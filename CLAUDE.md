@@ -11,7 +11,7 @@ FastAPI-based ML inference service for a fine-tuned Iris classification model, d
 - `app/main.py` — FastAPI application with `/predict` (POST) and `/health` endpoints. Loads the pickled model at startup from `models/iris_finetuned_model.pkl` using joblib.
 - `models/` — Contains the serialized scikit-learn model (`iris_finetuned_model.pkl`).
 - `Dockerfile` — Multi-stage build using `python:3.11-slim`, runs as non-root user, exposes port 8000.
-- `requirements.txt` — Pinned dependencies: fastapi, uvicorn, joblib, scikit-learn==1.17.0, numpy<2.0.0.
+- `requirements.txt` — Pinned dependencies: fastapi, uvicorn, joblib, scikit-learn==1.7.2, numpy<2.0.0.
 
 ## Commands
 
@@ -49,6 +49,6 @@ curl -X POST http://localhost:8000/predict \
 ## Key Constraints
 
 - The model file (`iris_finetuned_model.pkl`) must be present in `models/` before building the Docker image.
-- scikit-learn version must match the version used during model training (1.17.0) to avoid deserialization errors.
+- scikit-learn version must match the version used during model training (1.7.2) to avoid deserialization errors.
 - numpy must be <2.0.0 for compatibility with the pinned scikit-learn version.
 - The container runs as a non-root user — do not write to filesystem paths outside `/app` at runtime.
