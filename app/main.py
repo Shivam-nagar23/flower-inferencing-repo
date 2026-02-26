@@ -1,3 +1,4 @@
+import os
 import joblib
 import numpy as np
 from contextlib import asynccontextmanager
@@ -5,7 +6,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
 
-MODEL_PATH = "models/iris_finetuned_model.pkl"
+MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models", "iris_finetuned_model.pkl")
 
 model = None
 
